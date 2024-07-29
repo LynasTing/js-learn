@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组扁平化</title>
+</head>
+
+<body>
+<script>
+  function fn1() {
+    console.log(`1. ES6  Array.prototype.flat() + ::>>`, )
+
+    const arr = [1, [2, [3, [4, 5]]]]
+    // 默认只会扁平化一层
+    const result = arr.flat()
+    console.log(`result + ::>>`, result) // [1, 2, [3, [4, 5]]]
+
+    // 可以指定扁平化的深度
+    // 如果数组嵌套层级过多，Infinity 可能会出现性能问题和内存问题
+    const deepFlat = arr.flat(Infinity)
+    console.log(`deepFlat + ::>>`, deepFlat) // [1, 2, 3, 4,5]
+  }
+
+  function fn2() {
+    console.log(`2. 手写flat() + ::>>`, )
+    
+    const arr = [1, [2, [3, [4, 5]]]]
+
+    // source 需要进行扁平化的数组， depth 扁平化深度
+    const flatten = (source, depth = 1) => {
+      return source.reduce((prev, cur) => {
+        if(Array.isArray(cur) && depth >= 1) {
+          prev.push(...flatten(cur, depth - 1))
+        }else {
+          prev.push(cur)
+        }
+        // 在reduce执行完后，return 出 prev，即新数组
+        return prev
+      }, [])
+    }
+
+    const result = flatten(arr, 2)
+    console.log(`result + ::>>`, result)
+  }
+  fn2()
+</script>
+</body>
+</html>
