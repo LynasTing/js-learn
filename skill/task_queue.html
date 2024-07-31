@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>执行顺序题_1</title>
+</head>
+<body>
+  
+</body>
+<script>
+  function dey(duration) {
+    console.log(`5 + ::>>`, )
+    const start = Date.now()
+    while(Date.now() - start < duration);
+  }
+
+  function fn1() {
+    console.log(`4 + ::>>`, )
+    Promise.resolve(6)
+      .then(val1 => {
+        console.log(`val1 + ::>>`, val1)
+      })
+  }
+
+  setTimeout(() => {
+    console.log(`1 + ::>>`, )
+  }, 0);
+
+  fn1()
+
+  Promise.resolve(3)
+    .then(val2 => {
+      console.log(`val2 + ::>>`, val2)
+    })
+
+  dey(1000)
+
+  console.log(`2 + ::>>`, )
+</script>
+
+<script>
+</script>
+</html>
