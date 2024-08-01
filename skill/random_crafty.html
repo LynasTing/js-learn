@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随机数妙用</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  /**
+   * 随机颜色
+   */
+  function randomColor() {
+    // toString 方法接收参数，表示转换成的进制
+    // padEnd 确保截取到的长度是6，位数不足用 0 补齐
+    const color =  '#' + Math.random().toString(16).slice(2, 8).padEnd(6, 0)
+    const el = document.createElement('div')
+    el.style.width = '300px';
+    el.style.height = '300px';
+    el.style.backgroundColor = color
+    document.body.appendChild(el)
+  }
+  randomColor()
+
+  /**
+   * 随机字符串
+   * @param len 位数
+   */
+  function randomStr(len = 6) {
+    if(len <= 11) {
+      return Math.random().toString(36).slice(2, 2 + len).padEnd(len, 0)
+    }else {
+      return randomStr(11) + randomStr(len - 11)
+    }
+  }
+  console.log(`randomStr(100) + ::>>`, randomStr(100))
+</script>
