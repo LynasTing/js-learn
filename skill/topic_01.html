@@ -14,15 +14,15 @@
     a: 0
   }
 
-  // object的键名可以省略引号
-  obj['1'] = 0; // { a: 0, 1: 0 }
+  // object的键名最终都会被转换为字符串，使用方括号中使用number类型去读取，依然会被自动转化成string访问
+  obj['1'] = 0; // { 'a': 0, '1': 0 }
 
   // a++ 先自增再运算 ++a 先运算再自增
-  obj[++obj.a] = obj.a++; // { a: 2, 1: 1 }
+  obj[++obj.a] = obj.a++; // { 'a': 2, '1': 1 }
 
   const _v = Object.values(obj); // [1, 2]
   
-  obj[_v[1]] = obj.a; // { a: 2, 1: 1, 2: 2 }
+  obj[_v[1]] = obj.a; // { 'a': 2, '1': 1, '2': 2 }
 
-  console.log(`obj + ::>>`, obj) // { a: 2, 1: 1, 2: 2 }
+  console.log(`obj + ::>>`, obj) // { 'a': 2, '1': 1, '2': 2 }
 </script>
