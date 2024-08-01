@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>打印结果</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  const obj = {
+    a: 0
+  }
+
+  // object的键名可以省略引号
+  obj['1'] = 0; // { a: 0, 1: 0 }
+
+  // a++ 先自增再运算 ++a 先运算再自增
+  obj[++obj.a] = obj.a++; // { a: 2, 1: 1 }
+
+  const _v = Object.values(obj); // [1, 2]
+  
+  obj[_v[1]] = obj.a; // { a: 2, 1: 1, 2: 2 }
+
+  console.log(`obj + ::>>`, obj) // { a: 2, 1: 1, 2: 2 }
+</script>
