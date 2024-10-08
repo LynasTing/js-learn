@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>28_找出字符串中第一个匹配项的下标.html</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * @param {string} haystack
+     * @param {string} needle
+     * @return {number}
+     */
+    var strStr = function (haystack, needle) {
+      let tempStr = '';
+      let result = -1;
+      for (let i = 0; i < haystack.length; i++) {
+        tempStr = haystack.substring(i, i + needle.length);
+        if (tempStr === needle) {
+          return (result = i);
+        }
+      }
+      return result;
+    };
+    console.log(`strStr("sadbutsad", "sad") + ::>>`, strStr('sadbutsad', 'sad'));
+  </script>
+</html>
