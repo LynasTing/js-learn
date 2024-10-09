@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>58_最后一个单词的长度.html</title>
+  </head>
+  <script>
+    /**
+     * @param {string} s
+     * @return {number}
+     */
+    var lengthOfLastWord = function (s) {
+      const str = s.split('');
+      if (str.length === 1) {
+        return str.length;
+      }
+      let start = -1;
+      let end = -1;
+      for (let i = str.length - 1; i >= 0; i--) {
+        // 找到结束位置
+        if (start === -1 && end === -1 && str[i] !== ' ') {
+          end = i;
+          continue;
+        }
+        // 找到开始位置，并结束循环
+        if (end !== -1 && start === -1 && str[i] === ' ') {
+          start = i;
+          continue;
+        }
+      }
+      if (start === -1) {
+        start = 0;
+        end += 1;
+      }
+      return end - start;
+    };
+  </script>
+  <body></body>
+</html>
