@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3396_使数组元素互不相同所需的最少操作次数.html</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     * 1. 怎么确定剩余元素互不相同
+     */
+    var minimumOperations = function (nums) {
+      let count = 0;
+      if (!nums.length) {
+        return count;
+      }
+
+      const isAllDiff = (nums) => {
+        let diff = true;
+        for (let i = 0; i < nums.length; i++) {
+          for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] === nums[j]) {
+              diff = false;
+              return diff;
+            }
+          }
+        }
+        return diff;
+      };
+
+      if (isAllDiff(nums)) {
+        return count;
+      }
+      while (!isAllDiff(nums)) {
+        count += 1;
+        nums = nums.slice(3);
+      }
+      return count;
+    };
+
+    console.log(`minimumOperations + ::>>`, minimumOperations([4, 5, 6, 4, 4]));
+  </script>
+</html>
